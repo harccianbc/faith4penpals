@@ -13,7 +13,7 @@
       --gold: #b8860b;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Source Sans 3', sans-serif; background: #faf9f7; }
+    body { font-family: 'Source Sans 3', sans-serif; background: #faf9f7; user-select: none; }
     nav {
       background: var(--green-dark);
       padding: 0 30px;
@@ -31,7 +31,6 @@
     .nav-links a:hover { background: rgba(255,255,255,0.1); }
     .nav-signup { background: white !important; color: var(--green-dark) !important; font-weight: 600 !important; }
 
-    /* LOGIN SCREEN */
     #loginScreen {
       display: flex;
       align-items: center;
@@ -61,6 +60,7 @@
       font-family: inherit;
     }
     .login-box input:focus { outline: none; border-color: var(--green); }
+    .honeypot { display: none !important; }
     .login-btn {
       width: 100%;
       padding: 14px;
@@ -84,15 +84,25 @@
       font-size: 0.9em;
       display: none;
     }
-    .attempts-msg {
-      color: #b71c1c;
-      font-size: 0.85em;
-      margin-top: 10px;
-      display: none;
+    .attempts-msg { color: #b71c1c; font-size: 0.85em; margin-top: 10px; display: none; }
+
+    #membersPage { display: none; position: relative; }
+
+    /* WATERMARK */
+    #membersPage::before {
+      content: 'AUTHORISED ACCESS ONLY';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 4em;
+      color: rgba(0,0,0,0.04);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 9999;
+      font-weight: bold;
     }
 
-    /* MEMBERS PAGE */
-    #membersPage { display: none; }
     .members-header {
       background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
       color: white;
@@ -137,6 +147,49 @@
       cursor: pointer;
       font-size: 0.9em;
     }
+    .timer-bar {
+      background: var(--green-light);
+      border-bottom: 2px solid var(--green);
+      padding: 8px 20px;
+      text-align: center;
+      font-size: 0.9em;
+      color: var(--green-dark);
+    }
+    .auth-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+    }
+    .auth-overlay.active { display: flex; }
+    .auth-overlay h2 { font-family: 'Lora', serif; font-size: 2em; margin-bottom: 16px; }
+    .auth-overlay p { margin-bottom: 24px; opacity: 0.85; }
+    .auth-btn {
+      padding: 14px 30px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 8px;
+    }
+    .auth-btn-deny {
+      padding: 14px 30px;
+      background: #b71c1c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 8px;
+    }
     footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; margin-top: 60px; }
     footer a { color: #a5d6a7; text-decoration: none; margin: 0 10px; }
     footer p { margin-bottom: 10px; }
@@ -150,17 +203,29 @@
     <a href="index.html">Home</a>
     <a href="members.html">Members</a>
     <a href="index.html#support">Support Us</a>
-    <a href="index.html" class="nav-signup" onclick="openModal()">Sign Up Free</a>
+    <a href="index.html" class="nav-signup">Sign Up Free</a>
   </div>
 </nav>
 
+<!-- AUTHORISATION OVERLAY -->
+<div class="auth-overlay" id="authOverlay">
+  <h2>⚠️ Authorised Access Only</h2>
+  <p>This area is strictly for authorised personnel only.<br>
+  Unauthorised access is prohibited.<br>
+  Do you have authorisation to enter this area?</p>
+  <button class="auth-btn" onclick="confirmAuth()">✅ Yes I am Authorised</button>
+  <button class="auth-btn-deny" onclick="denyAuth()">❌ No — Take Me Back</button>
+</div>
+
 <!-- LOGIN SCREEN -->
-<div id="loginScreen">
+<div id="loginScreen" style="display:none;">
   <div class="login-box">
     <h2>✝️ Members Area</h2>
     <p>This area is currently under construction.<br>Authorised access only.</p>
-    <input type="text" id="usernameInput" placeholder="Username" />
-    <input type="password" id="passwordInput" placeholder="Password"
+    <!-- HONEYPOT - hidden trap for bots -->
+    <input type="text" class="honeypot" id="honeypot" tabindex="-1" autocomplete="off" />
+    <input type="text" id="usernameInput" placeholder="Username" autocomplete="off" />
+    <input type="password" id="passwordInput" placeholder="Password" autocomplete="off"
       onkeypress="if(event.key==='Enter') attemptLogin()" />
     <button class="login-btn" onclick="attemptLogin()">Enter Members Area</button>
     <div class="error-msg" id="errorMsg">❌ Incorrect username or password.</div>
@@ -168,15 +233,19 @@
   </div>
 </div>
 
-<!-- MEMBERS PAGE (hidden until login) -->
+<!-- MEMBERS PAGE -->
 <div id="membersPage">
+  <div class="timer-bar" id="timerBar">
+    🔒 Auto-lock in <span id="countdown">10:00</span> minutes of inactivity &nbsp;|&nbsp;
+    <button class="logout-btn" style="padding:4px 10px; font-size:0.85em;" onclick="logout()">Lock Now</button>
+  </div>
+
   <div class="members-header">
     <h1>✝️ Members Area</h1>
     <p>Welcome! This page is under construction 🚧</p>
   </div>
 
   <div class="members-container">
-
     <div class="under-construction">
       <h2>🚧 Building Something Special</h2>
       <p>The full members directory is currently being built.<br>
@@ -239,7 +308,6 @@
     <div style="text-align:center; margin-top:40px;">
       <button class="logout-btn" onclick="logout()">🔒 Lock This Page</button>
     </div>
-
   </div>
 
   <footer>
@@ -255,27 +323,48 @@
 <script>
   let attempts = 0;
   const MAX_ATTEMPTS = 3;
-  const LOCKOUT_TIME = 30 * 60 * 1000; // 30 minutes
+  const LOCKOUT_TIME = 30 * 60 * 1000;
+  let inactivityTimer;
+  let countdownInterval;
+  let secondsLeft = 600;
 
-  // Check if locked out
+  // SHOW AUTH OVERLAY FIRST
   window.onload = function() {
+    document.getElementById('authOverlay').classList.add('active');
     const lockout = localStorage.getItem('lockoutTime');
     if (lockout && Date.now() < parseInt(lockout)) {
       const mins = Math.ceil((parseInt(lockout) - Date.now()) / 60000);
       document.getElementById('errorMsg').style.display = 'block';
       document.getElementById('errorMsg').textContent = '🔒 Too many attempts. Try again in ' + mins + ' minutes.';
-      document.querySelector('.login-btn').disabled = true;
     }
   }
 
+  // AUTH OVERLAY
+  function confirmAuth() {
+    document.getElementById('authOverlay').classList.remove('active');
+    document.getElementById('loginScreen').style.display = 'flex';
+  }
+
+  function denyAuth() {
+    window.location.href = 'index.html';
+  }
+
+  // HONEYPOT CHECK
+  function isBotDetected() {
+    return document.getElementById('honeypot').value !== '';
+  }
+
+  // LOGIN
   function attemptLogin() {
+    if (isBotDetected()) {
+      window.location.href = 'index.html';
+      return;
+    }
     const lockout = localStorage.getItem('lockoutTime');
     if (lockout && Date.now() < parseInt(lockout)) return;
 
     const username = document.getElementById('usernameInput').value;
     const password = document.getElementById('passwordInput').value;
-
-    // Obfuscated credentials check
     const validUser = atob('MTkyMDEwODA=');
     const validPass = atob('UGxhc3RpY3Blbg==');
 
@@ -284,13 +373,14 @@
       document.getElementById('membersPage').style.display = 'block';
       attempts = 0;
       localStorage.removeItem('lockoutTime');
+      startInactivityTimer();
+      startCountdown();
     } else {
       attempts++;
       const errorMsg = document.getElementById('errorMsg');
       const attemptsMsg = document.getElementById('attemptsMsg');
       errorMsg.style.display = 'block';
       errorMsg.textContent = '❌ Incorrect username or password.';
-
       if (attempts >= MAX_ATTEMPTS) {
         localStorage.setItem('lockoutTime', Date.now() + LOCKOUT_TIME);
         errorMsg.textContent = '🔒 Too many failed attempts. Locked for 30 minutes.';
@@ -303,12 +393,93 @@
     }
   }
 
+  // AUTO LOGOUT TIMER
+  function startInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(logout, 10 * 60 * 1000);
+  }
+
+  function startCountdown() {
+    secondsLeft = 600;
+    clearInterval(countdownInterval);
+    countdownInterval = setInterval(function() {
+      secondsLeft--;
+      const mins = Math.floor(secondsLeft / 60);
+      const secs = secondsLeft % 60;
+      document.getElementById('countdown').textContent =
+        mins + ':' + (secs < 10 ? '0' : '') + secs;
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        logout();
+      }
+    }, 1000);
+  }
+
+  // Reset timer on activity
+  document.addEventListener('mousemove', resetTimer);
+  document.addEventListener('keypress', resetTimer);
+  document.addEventListener('click', resetTimer);
+  document.addEventListener('scroll', resetTimer);
+
+  function resetTimer() {
+    if (document.getElementById('membersPage').style.display === 'block') {
+      secondsLeft = 600;
+      startInactivityTimer();
+    }
+  }
+
+  // LOGOUT
   function logout() {
-    document.getElementById('loginScreen').style.display = 'flex';
+    clearTimeout(inactivityTimer);
+    clearInterval(countdownInterval);
     document.getElementById('membersPage').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('authOverlay').classList.add('active');
     document.getElementById('usernameInput').value = '';
     document.getElementById('passwordInput').value = '';
   }
+
+  // DISABLE RIGHT CLICK
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('❌ Right clicking is disabled on this page.');
+  });
+
+  // DISABLE KEYBOARD SHORTCUTS
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+      (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+      (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+      (e.ctrlKey && e.key === 'u') ||
+      (e.ctrlKey && e.key === 'U') ||
+      (e.ctrlKey && e.key === 's') ||
+      (e.ctrlKey && e.key === 'S') ||
+      (e.ctrlKey && e.key === 'p') ||
+      (e.ctrlKey && e.key === 'P')
+    ) {
+      e.preventDefault();
+      alert('❌ This action is disabled on this page.');
+    }
+  });
+
+  // DISABLE TEXT SELECTION
+  document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+  });
+
+  // DISABLE DRAG
+  document.addEventListener('dragstart', function(e) {
+    e.preventDefault();
+  });
+
+  // WARN ON TAB SWITCH
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden && document.getElementById('membersPage').style.display === 'block') {
+      logout();
+    }
+  });
 </script>
 </body>
 </html>
