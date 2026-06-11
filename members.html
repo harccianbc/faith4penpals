@@ -521,9 +521,7 @@
   });
   document.addEventListener('selectstart', e => e.preventDefault());
   document.addEventListener('dragstart', e => e.preventDefault());
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden && document.getElementById('membersPage').style.display === 'block') logout();
-  });
+  
 </script>
 </body>
 </html>
