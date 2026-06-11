@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -32,6 +32,7 @@
     .nav-links a { color: #c8e6c9; text-decoration: none; font-size: 0.95em; padding: 6px 12px; border-radius: 6px; transition: background 0.2s; }
     .nav-links a:hover { background: rgba(255,255,255,0.1); }
     .nav-signup { background: white !important; color: var(--green-dark) !important; font-weight: 600 !important; }
+    .age-banner { background: #b71c1c; color: white; text-align: center; padding: 10px 20px; font-size: 0.95em; font-weight: 600; }
     header { background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: white; padding: 80px 20px; text-align: center; }
     header h1 { font-family: 'Lora', serif; font-size: 3em; margin-bottom: 15px; }
     header p { font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; }
@@ -40,6 +41,7 @@
     .btn-white { background: white; color: var(--green-dark); font-weight: 600; }
     .btn-gold { background: var(--gold); color: white; }
     .btn-green { background: var(--green); color: white; font-weight: 600; }
+    .btn-green:disabled { background: #aaa; cursor: not-allowed; transform: none; }
     .section { padding: 60px 20px; text-align: center; }
     .section h2 { font-family: 'Lora', serif; font-size: 2em; margin-bottom: 15px; color: var(--green-dark); }
     .section p { max-width: 600px; margin: 0 auto 20px; color: #555; font-size: 1.05em; }
@@ -60,7 +62,7 @@
     .founder-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
-    .modal { background: white; border-radius: 16px; padding: 40px 36px; width: 100%; max-width: 420px; text-align: center; position: relative; }
+    .modal { background: white; border-radius: 16px; padding: 40px 36px; width: 100%; max-width: 420px; text-align: center; position: relative; max-height: 90vh; overflow-y: auto; }
     .modal h2 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 6px; }
     .modal p { color: var(--muted); margin-bottom: 24px; font-size: 0.95em; }
     .modal input, .modal select { width: 100%; padding: 12px 14px; margin-bottom: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; font-family: inherit; }
@@ -69,6 +71,10 @@
     .coming-soon { background: var(--green-light); border-radius: 8px; padding: 14px; margin-top: 16px; font-size: 0.9em; color: var(--green-dark); }
     .disclaimer { margin-top: 16px; font-size: 0.85em; color: #888; line-height: 1.6; border-top: 1px solid #eee; padding-top: 14px; }
     .disclaimer a { color: var(--green); font-weight: 600; text-decoration: underline; }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; text-align: left; margin-bottom: 14px; }
+    .checkbox-row input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: var(--green); transform: scale(1.3); }
+    .checkbox-row label { font-size: 0.92em; color: #555; line-height: 1.5; }
+    .age-warning { background: #ffebee; border: 1px solid #ef9a9a; border-radius: 8px; padding: 12px; margin-bottom: 14px; font-size: 0.9em; color: #b71c1c; display: none; }
     footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; }
     footer a { color: #a5d6a7; text-decoration: none; margin: 0 10px; }
     footer a:hover { text-decoration: underline; }
@@ -76,6 +82,11 @@
   </style>
 </head>
 <body>
+
+<!-- 18+ BANNER -->
+<div class="age-banner">
+  ⚠️ Faith4Penpals is strictly for users aged 18 and over. By using this site you confirm you are 18+.
+</div>
 
 <nav>
   <a href="index.html" class="nav-logo">✝️ Faith4Penpals</a>
@@ -160,22 +171,89 @@
     <button class="modal-close" onclick="closeModal()">×</button>
     <h2>Join Faith4Penpals</h2>
     <p>Create your free account and start connecting 🙏</p>
-    <input type="text" placeholder="Your full name" />
-    <input type="email" placeholder="Email address" />
-    <input type="password" placeholder="Choose a password" />
-    <select>
+
+    <input type="text" id="firstName" placeholder="Your first name only" />
+    <input type="email" id="email" placeholder="Email address" />
+    <input type="password" id="password" placeholder="Choose a password" />
+
+    <select id="country">
       <option value="">Your country...</option>
       <option>Australia</option>
-      <option>United States</option>
-      <option>United Kingdom</option>
-      <option>Canada</option>
       <option>New Zealand</option>
+      <option>United States</option>
+      <option>Canada</option>
+      <option>United Kingdom</option>
+      <option>Ireland</option>
+      <option>South Africa</option>
+      <option>Nigeria</option>
+      <option>Kenya</option>
+      <option>Ghana</option>
+      <option>Uganda</option>
+      <option>Zimbabwe</option>
+      <option>Tanzania</option>
+      <option>Ethiopia</option>
+      <option>Philippines</option>
+      <option>India</option>
+      <option>South Korea</option>
+      <option>Indonesia</option>
+      <option>Brazil</option>
+      <option>Mexico</option>
+      <option>Colombia</option>
+      <option>Argentina</option>
+      <option>Chile</option>
+      <option>Peru</option>
+      <option>Germany</option>
+      <option>France</option>
+      <option>Italy</option>
+      <option>Spain</option>
+      <option>Portugal</option>
+      <option>Poland</option>
+      <option>Romania</option>
+      <option>Netherlands</option>
+      <option>Belgium</option>
+      <option>Sweden</option>
+      <option>Norway</option>
+      <option>Denmark</option>
+      <option>Finland</option>
+      <option>Switzerland</option>
+      <option>Austria</option>
+      <option>Hungary</option>
+      <option>Czech Republic</option>
+      <option>Slovakia</option>
+      <option>Croatia</option>
+      <option>Serbia</option>
+      <option>Greece</option>
+      <option>Russia</option>
+      <option>Ukraine</option>
+      <option>Papua New Guinea</option>
+      <option>Fiji</option>
+      <option>Samoa</option>
+      <option>Tonga</option>
+      <option>Solomon Islands</option>
+      <option>Vanuatu</option>
       <option>Other</option>
     </select>
-    <a href="#" class="btn btn-green" style="width:100%; text-align:center;" onclick="closeModal()">Create Free Account</a>
+
+    <div class="age-warning" id="ageWarning">
+      ❌ You must be 18 or older to join Faith4Penpals.
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="ageCheck" onchange="checkAge()" />
+      <label for="ageCheck">⚠️ I confirm that I am <strong>18 years of age or older</strong>. I understand this site is strictly for adults aged 18+.</label>
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="termsCheck" onchange="checkAge()" />
+      <label for="termsCheck">I agree to the <a href="https://harccianbc.github.io/faith4penpals/terms.html" target="_blank" style="color:var(--green);">Terms of Service</a> and <a href="https://harccianbc.github.io/faith4penpals/privacy.html" target="_blank" style="color:var(--green);">Privacy Policy</a>.</label>
+    </div>
+
+    <a href="#" class="btn btn-green" id="submitBtn" style="width:100%; text-align:center; opacity:0.5; pointer-events:none;" onclick="closeModal()">Create Free Account</a>
+
     <div class="coming-soon">
       🚧 Full signup system coming soon! We're building something special.
     </div>
+
     <div class="disclaimer">
       By using our free service you agree to and are bound by our
       <a href="https://harccianbc.github.io/faith4penpals/terms.html" target="_blank">Terms of Service</a>
@@ -189,6 +267,19 @@
   function openModal() { document.getElementById('modalOverlay').classList.add('active'); }
   function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+
+  function checkAge() {
+    const ageChecked = document.getElementById('ageCheck').checked;
+    const termsChecked = document.getElementById('termsCheck').checked;
+    const btn = document.getElementById('submitBtn');
+    if (ageChecked && termsChecked) {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    } else {
+      btn.style.opacity = '0.5';
+      btn.style.pointerEvents = 'none';
+    }
+  }
 </script>
 </body>
 </html>
