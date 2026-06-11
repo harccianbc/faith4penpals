@@ -11,6 +11,7 @@
       --green-dark: #1b5e20;
       --green-light: #e8f5e9;
       --gold: #b8860b;
+      --red: #b71c1c;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Source Sans 3', sans-serif; background: #faf9f7; user-select: none; }
@@ -31,166 +32,88 @@
     .nav-links a:hover { background: rgba(255,255,255,0.1); }
     .nav-signup { background: white !important; color: var(--green-dark) !important; font-weight: 600 !important; }
 
-    #loginScreen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - 60px);
-      background: #faf9f7;
-    }
-    .login-box {
-      background: white;
-      border-radius: 16px;
-      padding: 50px 40px;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-      border-top: 5px solid var(--green);
-    }
+    /* LOGIN */
+    #loginScreen { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 60px); background: #faf9f7; }
+    .login-box { background: white; border-radius: 16px; padding: 50px 40px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.1); border-top: 5px solid var(--green); }
     .login-box h2 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 8px; font-size: 1.8em; }
     .login-box p { color: #888; margin-bottom: 30px; font-size: 0.95em; }
-    .login-box input {
-      width: 100%;
-      padding: 12px 16px;
-      margin-bottom: 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1em;
-      font-family: inherit;
-    }
+    .login-box input { width: 100%; padding: 12px 16px; margin-bottom: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; font-family: inherit; }
     .login-box input:focus { outline: none; border-color: var(--green); }
     .honeypot { display: none !important; }
-    .login-btn {
-      width: 100%;
-      padding: 14px;
-      background: var(--green);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.05em;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
+    .login-btn { width: 100%; padding: 14px; background: var(--green); color: white; border: none; border-radius: 8px; font-size: 1.05em; cursor: pointer; font-family: inherit; font-weight: 600; }
     .login-btn:hover { background: var(--green-dark); }
-    .error-msg {
-      background: #ffebee;
-      color: #b71c1c;
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 14px;
-      font-size: 0.9em;
-      display: none;
-    }
-    .attempts-msg { color: #b71c1c; font-size: 0.85em; margin-top: 10px; display: none; }
+    .error-msg { background: #ffebee; color: var(--red); border-radius: 8px; padding: 10px; margin-top: 14px; font-size: 0.9em; display: none; }
+    .attempts-msg { color: var(--red); font-size: 0.85em; margin-top: 10px; display: none; }
 
-    #membersPage { display: none; position: relative; }
-
-    /* WATERMARK */
-    #membersPage::before {
-      content: 'AUTHORISED ACCESS ONLY';
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      font-size: 4em;
-      color: rgba(0,0,0,0.04);
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 9999;
-      font-weight: bold;
-    }
-
-    .members-header {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-      color: white;
-      padding: 50px 20px;
-      text-align: center;
-    }
-    .members-header h1 { font-family: 'Lora', serif; font-size: 2.5em; margin-bottom: 10px; }
-    .members-header p { font-size: 1.1em; opacity: 0.9; }
-    .members-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-    .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
-    .member-card {
-      background: white;
-      border-radius: 12px;
-      padding: 24px 20px;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-      border: 2px solid transparent;
-      transition: border 0.2s, transform 0.2s;
-    }
-    .member-card:hover { border-color: var(--green); transform: translateY(-3px); }
-    .avatar { font-size: 3.5em; margin-bottom: 10px; }
-    .member-name { font-family: 'Lora', serif; font-size: 1.2em; color: var(--green-dark); margin-bottom: 4px; }
-    .member-country { font-size: 0.9em; color: #888; margin-bottom: 8px; }
-    .diamond-badge { font-size: 1.1em; margin-bottom: 8px; }
-    .member-bio { font-size: 0.88em; color: #666; line-height: 1.5; }
-    .under-construction {
-      background: var(--green-light);
-      border: 2px dashed var(--green);
-      border-radius: 12px;
-      padding: 40px;
-      text-align: center;
-      margin: 40px 0;
-    }
-    .under-construction h2 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 12px; }
-    .under-construction p { color: #555; }
-    .logout-btn {
-      background: #b71c1c;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-    .timer-bar {
-      background: var(--green-light);
-      border-bottom: 2px solid var(--green);
-      padding: 8px 20px;
-      text-align: center;
-      font-size: 0.9em;
-      color: var(--green-dark);
-    }
-    .auth-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 9000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      color: white;
-    }
+    /* AUTH OVERLAY */
+    .auth-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9000; align-items: center; justify-content: center; flex-direction: column; text-align: center; color: white; }
     .auth-overlay.active { display: flex; }
     .auth-overlay h2 { font-family: 'Lora', serif; font-size: 2em; margin-bottom: 16px; }
     .auth-overlay p { margin-bottom: 24px; opacity: 0.85; }
-    .auth-btn {
-      padding: 14px 30px;
-      background: var(--green);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1em;
-      cursor: pointer;
-      margin: 8px;
-    }
-    .auth-btn-deny {
-      padding: 14px 30px;
-      background: #b71c1c;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1em;
-      cursor: pointer;
-      margin: 8px;
-    }
-    footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; margin-top: 60px; }
+    .auth-btn { padding: 14px 30px; background: var(--green); color: white; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin: 8px; }
+    .auth-btn-deny { padding: 14px 30px; background: var(--red); color: white; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin: 8px; }
+
+    /* MEMBERS PAGE */
+    #membersPage { display: none; position: relative; }
+    #membersPage::before { content: 'AUTHORISED ACCESS ONLY'; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 4em; color: rgba(0,0,0,0.03); white-space: nowrap; pointer-events: none; z-index: 9999; font-weight: bold; }
+
+    .members-header { background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .members-header h1 { font-family: 'Lora', serif; font-size: 2.2em; margin-bottom: 8px; }
+    .members-header p { font-size: 1em; opacity: 0.9; }
+
+    /* SEARCH BOX */
+    .search-section { background: white; padding: 30px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+    .search-inner { max-width: 900px; margin: 0 auto; }
+    .search-inner h3 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 16px; font-size: 1.3em; }
+    .search-grid { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+    .search-field { display: flex; flex-direction: column; gap: 6px; }
+    .search-field label { font-size: 0.85em; color: #666; font-weight: 600; }
+    .search-field select, .search-field input { padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95em; font-family: inherit; background: white; min-width: 140px; }
+    .search-field select:focus, .search-field input:focus { outline: none; border-color: var(--green); }
+    .age-range { display: flex; gap: 8px; align-items: center; }
+    .age-range span { color: #888; font-size: 0.9em; }
+    .search-btn { padding: 10px 24px; background: var(--green); color: white; border: none; border-radius: 8px; font-size: 0.95em; cursor: pointer; font-weight: 600; font-family: inherit; }
+    .search-btn:hover { background: var(--green-dark); }
+    .clear-btn { padding: 10px 16px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95em; cursor: pointer; font-family: inherit; }
+
+    /* MEMBERS GRID */
+    .members-container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+    .results-count { color: #666; font-size: 0.95em; margin-bottom: 16px; }
+    .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .member-card { background: white; border-radius: 12px; padding: 24px 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border: 2px solid transparent; transition: border 0.2s, transform 0.2s; }
+    .member-card:hover { border-color: var(--green); transform: translateY(-3px); }
+    .member-card.blocked { display: none; }
+    .avatar { font-size: 3.5em; margin-bottom: 8px; }
+    .diamond-badge { font-size: 0.95em; margin-bottom: 8px; background: var(--green-light); display: inline-block; padding: 3px 10px; border-radius: 20px; color: var(--green-dark); }
+    .member-name { font-family: 'Lora', serif; font-size: 1.2em; color: var(--green-dark); margin-bottom: 4px; }
+    .member-meta { font-size: 0.88em; color: #888; margin-bottom: 8px; }
+    .member-bio { font-size: 0.88em; color: #666; line-height: 1.5; margin-bottom: 16px; border-top: 1px solid #f0f0f0; padding-top: 12px; }
+    .member-actions { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+    .btn-contact { padding: 7px 14px; background: var(--green); color: white; border: none; border-radius: 6px; font-size: 0.85em; cursor: pointer; font-family: inherit; }
+    .btn-block { padding: 7px 14px; background: #f5f5f5; color: #555; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85em; cursor: pointer; font-family: inherit; }
+    .btn-report { padding: 7px 14px; background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; border-radius: 6px; font-size: 0.85em; cursor: pointer; font-family: inherit; }
+
+    /* MODALS */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: white; border-radius: 16px; padding: 36px; width: 100%; max-width: 420px; text-align: center; position: relative; }
+    .modal-box h3 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 10px; font-size: 1.4em; }
+    .modal-box p { color: #666; margin-bottom: 20px; font-size: 0.95em; line-height: 1.6; }
+    .modal-box select, .modal-box textarea { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95em; font-family: inherit; margin-bottom: 14px; }
+    .modal-box textarea { height: 100px; resize: vertical; }
+    .modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: #aaa; }
+    .modal-btn { padding: 12px 24px; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: inherit; font-weight: 600; margin: 4px; }
+    .modal-btn-green { background: var(--green); color: white; }
+    .modal-btn-red { background: var(--red); color: white; }
+    .modal-btn-grey { background: #f0f0f0; color: #555; }
+
+    .no-results { text-align: center; padding: 60px 20px; color: #888; }
+    .no-results .icon { font-size: 3em; margin-bottom: 16px; }
+
+    .lock-section { text-align: center; padding: 30px; }
+    .logout-btn { background: var(--red); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 0.95em; font-family: inherit; }
+
+    footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; margin-top: 40px; }
     footer a { color: #a5d6a7; text-decoration: none; margin: 0 10px; }
     footer p { margin-bottom: 10px; }
   </style>
@@ -207,12 +130,10 @@
   </div>
 </nav>
 
-<!-- AUTHORISATION OVERLAY -->
+<!-- AUTH OVERLAY -->
 <div class="auth-overlay" id="authOverlay">
   <h2>⚠️ Authorised Access Only</h2>
-  <p>This area is strictly for authorised personnel only.<br>
-  Unauthorised access is prohibited.<br>
-  Do you have authorisation to enter this area?</p>
+  <p>This area is strictly for authorised personnel only.<br>Unauthorised access is prohibited.<br>Do you have authorisation to enter this area?</p>
   <button class="auth-btn" onclick="confirmAuth()">✅ Yes I am Authorised</button>
   <button class="auth-btn-deny" onclick="denyAuth()">❌ No — Take Me Back</button>
 </div>
@@ -222,7 +143,6 @@
   <div class="login-box">
     <h2>✝️ Members Area</h2>
     <p>This area is currently under construction.<br>Authorised access only.</p>
-    <!-- HONEYPOT - hidden trap for bots -->
     <input type="text" class="honeypot" id="honeypot" tabindex="-1" autocomplete="off" />
     <input type="text" id="usernameInput" placeholder="Username" autocomplete="off" />
     <input type="password" id="passwordInput" placeholder="Password" autocomplete="off"
@@ -235,77 +155,160 @@
 
 <!-- MEMBERS PAGE -->
 <div id="membersPage">
-  <div class="timer-bar" id="timerBar">
-    🔒 Auto-lock in <span id="countdown">10:00</span> minutes of inactivity &nbsp;|&nbsp;
-    <button class="logout-btn" style="padding:4px 10px; font-size:0.85em;" onclick="logout()">Lock Now</button>
-  </div>
 
   <div class="members-header">
     <h1>✝️ Members Area</h1>
-    <p>Welcome! This page is under construction 🚧</p>
+    <p>Search for your perfect Christian pen pal 🙏</p>
   </div>
 
-  <div class="members-container">
-    <div class="under-construction">
-      <h2>🚧 Building Something Special</h2>
-      <p>The full members directory is currently being built.<br>
-      When complete, members will be able to browse profiles,<br>
-      connect with pen pals, and earn diamond badges! 💎</p>
+  <!-- SEARCH BOX -->
+  <div class="search-section">
+    <div class="search-inner">
+      <h3>🔍 Search for Pen Pals</h3>
+      <div class="search-grid">
+        <div class="search-field">
+          <label>Country</label>
+          <select id="searchCountry">
+            <option value="">All Countries</option>
+            <option>Australia</option>
+            <option>New Zealand</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>United Kingdom</option>
+            <option>Ireland</option>
+            <option>South Africa</option>
+            <option>Nigeria</option>
+            <option>Kenya</option>
+            <option>Ghana</option>
+            <option>Uganda</option>
+            <option>Zimbabwe</option>
+            <option>Philippines</option>
+            <option>India</option>
+            <option>Brazil</option>
+            <option>Mexico</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Italy</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label>Gender</label>
+          <select id="searchGender">
+            <option value="">All</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label>Age Range</label>
+          <div class="age-range">
+            <input type="number" id="ageMin" placeholder="18" min="18" max="99" style="width:70px;" />
+            <span>to</span>
+            <input type="number" id="ageMax" placeholder="99" min="18" max="99" style="width:70px;" />
+          </div>
+        </div>
+        <div class="search-field">
+          <button class="search-btn" onclick="searchMembers()">Search</button>
+        </div>
+        <div class="search-field">
+          <button class="clear-btn" onclick="clearSearch()">Clear</button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <h2 style="font-family:'Lora',serif; color:var(--green-dark); margin-bottom:20px;">
-      Sample Member Profiles
-    </h2>
-    <p style="color:#666; margin-bottom:10px;">
-      This is a preview of what member cards will look like:
-    </p>
+  <!-- MEMBERS GRID -->
+  <div class="members-container">
+    <p class="results-count" id="resultsCount">Showing all sample members</p>
+    <div class="members-grid" id="membersGrid">
 
-    <div class="members-grid">
-      <div class="member-card">
+      <div class="member-card" data-country="Australia" data-gender="Female" data-age="28">
         <div class="avatar">🕊️</div>
         <div class="diamond-badge">⬜ Newcomer</div>
         <div class="member-name">Sarah</div>
-        <div class="member-country">🇦🇺 Australia</div>
+        <div class="member-meta">🇦🇺 Australia &nbsp;|&nbsp; Female &nbsp;|&nbsp; Age 28</div>
         <div class="member-bio">"Looking for faithful friends to share life and scripture with."</div>
+        <div class="member-actions">
+          <button class="btn-contact" onclick="openContact('Sarah')">✉️ Contact</button>
+          <button class="btn-block" onclick="blockMember(this, 'Sarah')">🚫 Block</button>
+          <button class="btn-report" onclick="openReport('Sarah')">🚨 Report</button>
+        </div>
       </div>
-      <div class="member-card">
+
+      <div class="member-card" data-country="United States" data-gender="Male" data-age="35">
         <div class="avatar">✝️</div>
         <div class="diamond-badge">💙 Friend</div>
         <div class="member-name">James</div>
-        <div class="member-country">🇺🇸 United States</div>
+        <div class="member-meta">🇺🇸 United States &nbsp;|&nbsp; Male &nbsp;|&nbsp; Age 35</div>
         <div class="member-bio">"Blessed to connect with believers worldwide. Write to me!"</div>
+        <div class="member-actions">
+          <button class="btn-contact" onclick="openContact('James')">✉️ Contact</button>
+          <button class="btn-block" onclick="blockMember(this, 'James')">🚫 Block</button>
+          <button class="btn-report" onclick="openReport('James')">🚨 Report</button>
+        </div>
       </div>
-      <div class="member-card">
+
+      <div class="member-card" data-country="Nigeria" data-gender="Female" data-age="42">
         <div class="avatar">📖</div>
         <div class="diamond-badge">💜 Faithful</div>
         <div class="member-name">Grace</div>
-        <div class="member-country">🇳🇬 Nigeria</div>
+        <div class="member-meta">🇳🇬 Nigeria &nbsp;|&nbsp; Female &nbsp;|&nbsp; Age 42</div>
         <div class="member-bio">"Passionate about prayer, scripture and encouragement."</div>
+        <div class="member-actions">
+          <button class="btn-contact" onclick="openContact('Grace')">✉️ Contact</button>
+          <button class="btn-block" onclick="blockMember(this, 'Grace')">🚫 Block</button>
+          <button class="btn-report" onclick="openReport('Grace')">🚨 Report</button>
+        </div>
       </div>
-      <div class="member-card">
+
+      <div class="member-card" data-country="United Kingdom" data-gender="Male" data-age="55">
         <div class="avatar">🌟</div>
         <div class="diamond-badge">💚 Blessed</div>
         <div class="member-name">David</div>
-        <div class="member-country">🇬🇧 United Kingdom</div>
+        <div class="member-meta">🇬🇧 United Kingdom &nbsp;|&nbsp; Male &nbsp;|&nbsp; Age 55</div>
         <div class="member-bio">"25 years following Christ. Love writing letters of faith."</div>
+        <div class="member-actions">
+          <button class="btn-contact" onclick="openContact('David')">✉️ Contact</button>
+          <button class="btn-block" onclick="blockMember(this, 'David')">🚫 Block</button>
+          <button class="btn-report" onclick="openReport('David')">🚨 Report</button>
+        </div>
       </div>
-      <div class="member-card">
+
+      <div class="member-card" data-country="Philippines" data-gender="Female" data-age="61">
         <div class="avatar">🙏</div>
         <div class="diamond-badge">🧡 Elder</div>
         <div class="member-name">Mary</div>
-        <div class="member-country">🇵🇭 Philippines</div>
+        <div class="member-meta">🇵🇭 Philippines &nbsp;|&nbsp; Female &nbsp;|&nbsp; Age 61</div>
         <div class="member-bio">"Seeking pen pals to pray with and encourage daily."</div>
+        <div class="member-actions">
+          <button class="btn-contact" onclick="openContact('Mary')">✉️ Contact</button>
+          <button class="btn-block" onclick="blockMember(this, 'Mary')">🚫 Block</button>
+          <button class="btn-report" onclick="openReport('Mary')">🚨 Report</button>
+        </div>
       </div>
-      <div class="member-card">
+
+      <div class="member-card" data-country="South Africa" data-gender="Female" data-age="47">
         <div class="avatar">🌸</div>
         <div class="diamond-badge">❤️ Ambassador</div>
         <div class="member-name">Ruth</div>
-        <div class="member-country">🇿🇦 South Africa</div>
+        <div class="member-meta">🇿🇦 South Africa &nbsp;|&nbsp; Female &nbsp;|&nbsp; Age 47</div>
         <div class="member-bio">"100+ pen pals and counting! God is so good. 🙏"</div>
+        <div class="member-actions">
+          <button class="btn-contact" onclick="openContact('Ruth')">✉️ Contact</button>
+          <button class="btn-block" onclick="blockMember(this, 'Ruth')">🚫 Block</button>
+          <button class="btn-report" onclick="openReport('Ruth')">🚨 Report</button>
+        </div>
       </div>
+
     </div>
 
-    <div style="text-align:center; margin-top:40px;">
+    <div class="no-results" id="noResults" style="display:none;">
+      <div class="icon">🔍</div>
+      <p>No members found matching your search.<br>Try different filters!</p>
+    </div>
+
+    <div class="lock-section">
       <button class="logout-btn" onclick="logout()">🔒 Lock This Page</button>
     </div>
   </div>
@@ -320,15 +323,64 @@
   </footer>
 </div>
 
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('contactModal')">×</button>
+    <h3>✉️ Contact <span id="contactName"></span></h3>
+    <p>The full messaging system is coming soon! When complete you will be able to send messages directly to your pen pal here. 🚧</p>
+    <button class="modal-btn modal-btn-green" onclick="closeModal('contactModal')">OK Got It!</button>
+  </div>
+</div>
+
+<!-- REPORT MODAL -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('reportModal')">×</button>
+    <h3>🚨 Report <span id="reportName"></span></h3>
+    <p>Please tell us why you are reporting this member. We take all reports seriously.</p>
+    <select id="reportReason">
+      <option value="">Select a reason...</option>
+      <option>Harassment or bullying</option>
+      <option>Inappropriate messages</option>
+      <option>Fake or scam profile</option>
+      <option>Spam</option>
+      <option>Underage user</option>
+      <option>Other</option>
+    </select>
+    <textarea id="reportDetails" placeholder="Please give more details (optional)..."></textarea>
+    <button class="modal-btn modal-btn-red" onclick="submitReport()">🚨 Submit Report</button>
+    <button class="modal-btn modal-btn-grey" onclick="closeModal('reportModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- BLOCK CONFIRM MODAL -->
+<div class="modal-overlay" id="blockModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('blockModal')">×</button>
+    <h3>🚫 Block <span id="blockName"></span>?</h3>
+    <p>Blocking this member will hide them from your view. You can refresh the page to unblock.</p>
+    <button class="modal-btn modal-btn-red" onclick="confirmBlock()">🚫 Yes Block Them</button>
+    <button class="modal-btn modal-btn-grey" onclick="closeModal('blockModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- REPORT SUCCESS MODAL -->
+<div class="modal-overlay" id="reportSuccessModal">
+  <div class="modal-box">
+    <h3>✅ Report Submitted</h3>
+    <p>Thank you for keeping Faith4Penpals safe. Your report has been received and will be reviewed by our admin team. 🙏</p>
+    <button class="modal-btn modal-btn-green" onclick="closeModal('reportSuccessModal')">Close</button>
+  </div>
+</div>
+
 <script>
   let attempts = 0;
   const MAX_ATTEMPTS = 3;
   const LOCKOUT_TIME = 30 * 60 * 1000;
-  let inactivityTimer;
-  let countdownInterval;
-  let secondsLeft = 600;
+  let currentBlockBtn = null;
+  let currentBlockName = '';
 
-  // SHOW AUTH OVERLAY FIRST
   window.onload = function() {
     document.getElementById('authOverlay').classList.add('active');
     const lockout = localStorage.getItem('lockoutTime');
@@ -339,42 +391,28 @@
     }
   }
 
-  // AUTH OVERLAY
   function confirmAuth() {
     document.getElementById('authOverlay').classList.remove('active');
     document.getElementById('loginScreen').style.display = 'flex';
   }
 
-  function denyAuth() {
-    window.location.href = 'index.html';
-  }
+  function denyAuth() { window.location.href = 'index.html'; }
 
-  // HONEYPOT CHECK
-  function isBotDetected() {
-    return document.getElementById('honeypot').value !== '';
-  }
+  function isBotDetected() { return document.getElementById('honeypot').value !== ''; }
 
-  // LOGIN
   function attemptLogin() {
-    if (isBotDetected()) {
-      window.location.href = 'index.html';
-      return;
-    }
+    if (isBotDetected()) { window.location.href = 'index.html'; return; }
     const lockout = localStorage.getItem('lockoutTime');
     if (lockout && Date.now() < parseInt(lockout)) return;
-
     const username = document.getElementById('usernameInput').value;
     const password = document.getElementById('passwordInput').value;
     const validUser = atob('MTkyMDEwODA=');
     const validPass = atob('UGxhc3RpY3Blbg==');
-
     if (username === validUser && password === validPass) {
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('membersPage').style.display = 'block';
       attempts = 0;
       localStorage.removeItem('lockoutTime');
-      startInactivityTimer();
-      startCountdown();
     } else {
       attempts++;
       const errorMsg = document.getElementById('errorMsg');
@@ -393,45 +431,7 @@
     }
   }
 
-  // AUTO LOGOUT TIMER
-  function startInactivityTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(logout, 10 * 60 * 1000);
-  }
-
-  function startCountdown() {
-    secondsLeft = 600;
-    clearInterval(countdownInterval);
-    countdownInterval = setInterval(function() {
-      secondsLeft--;
-      const mins = Math.floor(secondsLeft / 60);
-      const secs = secondsLeft % 60;
-      document.getElementById('countdown').textContent =
-        mins + ':' + (secs < 10 ? '0' : '') + secs;
-      if (secondsLeft <= 0) {
-        clearInterval(countdownInterval);
-        logout();
-      }
-    }, 1000);
-  }
-
-  // Reset timer on activity
-  document.addEventListener('mousemove', resetTimer);
-  document.addEventListener('keypress', resetTimer);
-  document.addEventListener('click', resetTimer);
-  document.addEventListener('scroll', resetTimer);
-
-  function resetTimer() {
-    if (document.getElementById('membersPage').style.display === 'block') {
-      secondsLeft = 600;
-      startInactivityTimer();
-    }
-  }
-
-  // LOGOUT
   function logout() {
-    clearTimeout(inactivityTimer);
-    clearInterval(countdownInterval);
     document.getElementById('membersPage').style.display = 'none';
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('authOverlay').classList.add('active');
@@ -439,46 +439,90 @@
     document.getElementById('passwordInput').value = '';
   }
 
-  // DISABLE RIGHT CLICK
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    alert('❌ Right clicking is disabled on this page.');
-  });
+  // SEARCH
+  function searchMembers() {
+    const country = document.getElementById('searchCountry').value;
+    const gender = document.getElementById('searchGender').value;
+    const ageMin = parseInt(document.getElementById('ageMin').value) || 18;
+    const ageMax = parseInt(document.getElementById('ageMax').value) || 99;
+    const cards = document.querySelectorAll('.member-card:not(.blocked)');
+    let visible = 0;
+    cards.forEach(card => {
+      const c = card.dataset.country;
+      const g = card.dataset.gender;
+      const a = parseInt(card.dataset.age);
+      const matchCountry = !country || c === country;
+      const matchGender = !gender || g === gender;
+      const matchAge = a >= ageMin && a <= ageMax;
+      if (matchCountry && matchGender && matchAge) {
+        card.style.display = 'block';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('resultsCount').textContent = 'Showing ' + visible + ' member(s)';
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  }
 
-  // DISABLE KEYBOARD SHORTCUTS
+  function clearSearch() {
+    document.getElementById('searchCountry').value = '';
+    document.getElementById('searchGender').value = '';
+    document.getElementById('ageMin').value = '';
+    document.getElementById('ageMax').value = '';
+    document.querySelectorAll('.member-card:not(.blocked)').forEach(c => c.style.display = 'block');
+    document.getElementById('resultsCount').textContent = 'Showing all sample members';
+    document.getElementById('noResults').style.display = 'none';
+  }
+
+  // CONTACT
+  function openContact(name) {
+    document.getElementById('contactName').textContent = name;
+    document.getElementById('contactModal').classList.add('active');
+  }
+
+  // BLOCK
+  function blockMember(btn, name) {
+    currentBlockBtn = btn;
+    currentBlockName = name;
+    document.getElementById('blockName').textContent = name;
+    document.getElementById('blockModal').classList.add('active');
+  }
+
+  function confirmBlock() {
+    currentBlockBtn.closest('.member-card').classList.add('blocked');
+    closeModal('blockModal');
+  }
+
+  // REPORT
+  function openReport(name) {
+    document.getElementById('reportName').textContent = name;
+    document.getElementById('reportModal').classList.add('active');
+  }
+
+  function submitReport() {
+    const reason = document.getElementById('reportReason').value;
+    if (!reason) { alert('Please select a reason for reporting.'); return; }
+    closeModal('reportModal');
+    document.getElementById('reportSuccessModal').classList.add('active');
+    document.getElementById('reportReason').value = '';
+    document.getElementById('reportDetails').value = '';
+  }
+
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+  // SECURITY
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); alert('❌ Right clicking is disabled.'); });
   document.addEventListener('keydown', function(e) {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-      (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-      (e.ctrlKey && e.shiftKey && e.key === 'C') ||
-      (e.ctrlKey && e.key === 'u') ||
-      (e.ctrlKey && e.key === 'U') ||
-      (e.ctrlKey && e.key === 's') ||
-      (e.ctrlKey && e.key === 'S') ||
-      (e.ctrlKey && e.key === 'p') ||
-      (e.ctrlKey && e.key === 'P')
-    ) {
-      e.preventDefault();
-      alert('❌ This action is disabled on this page.');
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
+        (e.ctrlKey && ['u','U','s','S','p','P'].includes(e.key))) {
+      e.preventDefault(); alert('❌ This action is disabled.');
     }
   });
-
-  // DISABLE TEXT SELECTION
-  document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-  });
-
-  // DISABLE DRAG
-  document.addEventListener('dragstart', function(e) {
-    e.preventDefault();
-  });
-
-  // WARN ON TAB SWITCH
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
   document.addEventListener('visibilitychange', function() {
-    if (document.hidden && document.getElementById('membersPage').style.display === 'block') {
-      logout();
-    }
+    if (document.hidden && document.getElementById('membersPage').style.display === 'block') logout();
   });
 </script>
 </body>
