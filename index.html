@@ -16,8 +16,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Source Sans 3', sans-serif; background: #faf9f7; color: var(--text); }
-
-    /* NAVBAR */
     nav {
       background: var(--green-dark);
       padding: 0 30px;
@@ -29,151 +27,56 @@
       top: 0;
       z-index: 100;
     }
-    .nav-logo {
-      font-family: 'Lora', serif;
-      color: white;
-      font-size: 1.3em;
-      text-decoration: none;
-    }
+    .nav-logo { font-family: 'Lora', serif; color: white; font-size: 1.3em; text-decoration: none; }
     .nav-links { display: flex; gap: 10px; align-items: center; }
-    .nav-links a {
-      color: #c8e6c9;
-      text-decoration: none;
-      font-size: 0.95em;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
+    .nav-links a { color: #c8e6c9; text-decoration: none; font-size: 0.95em; padding: 6px 12px; border-radius: 6px; transition: background 0.2s; }
     .nav-links a:hover { background: rgba(255,255,255,0.1); }
-    .nav-signup {
-      background: white !important;
-      color: var(--green-dark) !important;
-      font-weight: 600 !important;
-    }
-    .nav-signup:hover { background: #f1f8e9 !important; }
-
-    /* HERO */
-    header {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-    }
+    .nav-signup { background: white !important; color: var(--green-dark) !important; font-weight: 600 !important; }
+    header { background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: white; padding: 80px 20px; text-align: center; }
     header h1 { font-family: 'Lora', serif; font-size: 3em; margin-bottom: 15px; }
     header p { font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; }
-    .btn {
-      padding: 14px 28px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.05em;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin: 8px;
-      transition: transform 0.2s;
-    }
+    .btn { padding: 14px 28px; border: none; border-radius: 8px; font-size: 1.05em; cursor: pointer; text-decoration: none; display: inline-block; margin: 8px; transition: transform 0.2s; }
     .btn:hover { transform: translateY(-2px); }
     .btn-white { background: white; color: var(--green-dark); font-weight: 600; }
     .btn-gold { background: var(--gold); color: white; }
     .btn-green { background: var(--green); color: white; font-weight: 600; }
-
-    /* SECTIONS */
     .section { padding: 60px 20px; text-align: center; }
     .section h2 { font-family: 'Lora', serif; font-size: 2em; margin-bottom: 15px; color: var(--green-dark); }
     .section p { max-width: 600px; margin: 0 auto 20px; color: #555; font-size: 1.05em; }
-
-    /* PRICING */
-    .pricing { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-    .plan {
-      background: white;
-      border-radius: 12px;
-      padding: 36px 30px;
-      width: 260px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border: 2px solid transparent;
-    }
-    .plan.featured { border-color: var(--green); }
-    .plan h3 { font-family: 'Lora', serif; font-size: 1.4em; margin-bottom: 10px; }
-    .plan .price { font-size: 2.2em; font-weight: 700; color: var(--green); margin: 10px 0; }
-    .plan .price span { font-size: 0.5em; color: var(--muted); }
-    .plan ul { list-style: none; text-align: left; margin: 16px 0 24px; }
-    .plan ul li { padding: 6px 0; color: #555; }
-    .plan ul li::before { content: "✓ "; color: var(--green); font-weight: bold; }
-
-    /* SIGNUP MODAL */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal {
-      background: white;
-      border-radius: 16px;
-      padding: 40px 36px;
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-      position: relative;
-    }
-    .modal h2 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 6px; }
-    .modal p { color: var(--muted); margin-bottom: 24px; font-size: 0.95em; }
-    .modal input, .modal select {
-      width: 100%;
-      padding: 12px 14px;
-      margin-bottom: 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1em;
-      font-family: inherit;
-    }
-    .modal input:focus, .modal select:focus {
-      outline: none;
-      border-color: var(--green);
-    }
-    .modal-close {
-      position: absolute;
-      top: 14px; right: 18px;
-      background: none;
-      border: none;
-      font-size: 1.5em;
-      cursor: pointer;
-      color: var(--muted);
-    }
-    .coming-soon {
-      background: var(--green-light);
-      border-radius: 8px;
-      padding: 14px;
-      margin-top: 16px;
-      font-size: 0.9em;
-      color: var(--green-dark);
-    }
-
-    /* FEATURES */
     .features { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-    .feature {
-      background: white;
-      border-radius: 12px;
-      padding: 28px 24px;
-      width: 200px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      text-align: center;
-    }
+    .feature { background: white; border-radius: 12px; padding: 28px 24px; width: 200px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; }
     .feature .icon { font-size: 2.5em; margin-bottom: 12px; }
     .feature h4 { font-family: 'Lora', serif; margin-bottom: 6px; color: var(--green-dark); }
     .feature p { font-size: 0.9em; color: var(--muted); }
-
-    footer {
-      background: var(--green-dark);
-      color: #c8e6c9;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9em;
+    .free-banner { background: var(--green-light); border: 2px solid var(--green); border-radius: 16px; padding: 40px 30px; max-width: 500px; margin: 30px auto 0; }
+    .free-banner h3 { font-family: 'Lora', serif; font-size: 1.8em; color: var(--green-dark); margin-bottom: 16px; }
+    .free-banner ul { list-style: none; text-align: left; margin-bottom: 24px; }
+    .free-banner ul li { padding: 8px 0; color: #444; font-size: 1.05em; }
+    .free-banner ul li::before { content: "✓ "; color: var(--green); font-weight: bold; }
+    .founder-box {
+      background: white;
+      border-left: 5px solid var(--gold);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
     }
+    .founder-box h2 { font-family: 'Lora', serif; color: var(--gold); margin-bottom: 20px; font-size: 1.6em; }
+    .founder-box p { color: #555; margin-bottom: 16px; font-size: 1.05em; line-height: 1.8; }
+    .founder-box .founder-sig { font-family: 'Lora', serif; font-style: italic; color: var(--green-dark); font-size: 1.1em; margin-top: 20px; }
+    .founder-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: white; border-radius: 16px; padding: 40px 36px; width: 100%; max-width: 420px; text-align: center; position: relative; }
+    .modal h2 { font-family: 'Lora', serif; color: var(--green-dark); margin-bottom: 6px; }
+    .modal p { color: var(--muted); margin-bottom: 24px; font-size: 0.95em; }
+    .modal input, .modal select { width: 100%; padding: 12px 14px; margin-bottom: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; font-family: inherit; }
+    .modal input:focus, .modal select:focus { outline: none; border-color: var(--green); }
+    .modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--muted); }
+    .coming-soon { background: var(--green-light); border-radius: 8px; padding: 14px; margin-top: 16px; font-size: 0.9em; color: var(--green-dark); }
+    footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; }
     footer a { color: #a5d6a7; text-decoration: none; margin: 0 10px; }
     footer a:hover { text-decoration: underline; }
     footer p { margin-bottom: 10px; }
@@ -181,92 +84,74 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <a href="index.html" class="nav-logo">✝️ Faith4Penpals</a>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#pricing">Pricing</a>
+    <a href="#founder">Our Story</a>
     <a href="#support">Support Us</a>
     <a href="#" class="nav-signup" onclick="openModal()">Sign Up Free</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <header>
   <h1>✝️ Faith4Penpals</h1>
   <p>Connecting believers, one letter at a time 🙏</p>
   <a href="#" class="btn btn-white" onclick="openModal()">Join Free Today</a>
-  <a href="#pricing" class="btn btn-gold">See Premium — $6/month</a>
 </header>
 
-<!-- ABOUT -->
 <div class="section" id="about" style="background: white;">
   <h2>A Christian Community Built on Generosity</h2>
-  <p>Unlike other pen pal sites that charge a fortune, Faith4Penpals believes faith-based friendship shouldn't cost the earth. Join free — upgrade only if you want more.</p>
+  <p>Unlike other pen pal sites that charge a fortune, Faith4Penpals is completely free — because we believe Christian friendship should never have a price tag.</p>
   <div class="features">
-    <div class="feature">
-      <div class="icon">✝️</div>
-      <h4>Faith First</h4>
-      <p>Built for Christians by Christians</p>
-    </div>
-    <div class="feature">
-      <div class="icon">🌍</div>
-      <h4>Worldwide</h4>
-      <p>Connect with believers around the globe</p>
-    </div>
-    <div class="feature">
-      <div class="icon">🙏</div>
-      <h4>Safe & Moderated</h4>
-      <p>Kind, Christ-like community rules</p>
-    </div>
-    <div class="feature">
-      <div class="icon">💌</div>
-      <h4>Pen Pals</h4>
-      <p>Real connections, real letters</p>
+    <div class="feature"><div class="icon">✝️</div><h4>Faith First</h4><p>Built for Christians by Christians</p></div>
+    <div class="feature"><div class="icon">🌍</div><h4>Worldwide</h4><p>Connect with believers around the globe</p></div>
+    <div class="feature"><div class="icon">🙏</div><h4>Safe & Moderated</h4><p>Kind, Christ-like community rules</p></div>
+    <div class="feature"><div class="icon">💌</div><h4>Pen Pals</h4><p>Real connections, real letters</p></div>
+  </div>
+</div>
+
+<!-- FOUNDER MESSAGE -->
+<div class="section" id="founder" style="background: #faf9f7;">
+  <div class="founder-box">
+    <h2>✉️ A Message from the Founder</h2>
+    <p>When I created Faith4Penpals, I had one simple vision — to build a free place where Christians from all over the world could meet, connect, and encourage one another in faith.</p>
+    <p>So many pen pal sites out there are focused on making money, charging fees just to send a message or find a friend. I didn't want that. I believe Christian community should be open to everyone, regardless of their financial situation.</p>
+    <p>This site is — and always will be — completely free.</p>
+    <p>However, keeping a website running does have costs. If you have been blessed by this community and would like to help keep it going, I humbly ask that you consider either buying the founder's merch or buying us a coffee. Every little bit helps and is deeply appreciated.</p>
+    <p>But please — never feel pressured. Just being here and connecting with fellow believers is enough. 🙏</p>
+    <div class="founder-sig">— The Founder of Faith4Penpals</div>
+    <div class="founder-btns">
+      <a href="https://www.redbubble.com/YOURSTORE" target="_blank" class="btn btn-green">🛍️ Shop Founder's Merch</a>
+      <a href="https://www.buymeacoffee.com/YOURNAME" target="_blank" class="btn btn-gold">☕ Buy Us a Coffee</a>
     </div>
   </div>
 </div>
 
-<!-- PRICING -->
-<div class="section" id="pricing" style="background: #faf9f7;">
-  <h2>Simple, Generous Pricing</h2>
-  <p>Way cheaper than other pen pal sites — because community matters more than profit.</p>
-  <div class="pricing">
-    <div class="plan">
-      <h3>Free</h3>
-      <div class="price">$0 <span>/month</span></div>
-      <ul>
-        <li>Create your profile</li>
-        <li>Browse pen pals</li>
-        <li>Limited messaging</li>
-        <li>Basic matching</li>
-      </ul>
-      <a href="#" class="btn btn-green" onclick="openModal()">Join Free</a>
-    </div>
-    <div class="plan featured">
-      <h3>Premium ⭐</h3>
-      <div class="price">$6 <span>AUD/month</span></div>
-      <ul>
-        <li>Everything in Free</li>
-        <li>Unlimited messaging</li>
-        <li>Advanced filters</li>
-        <li>Featured profile</li>
-        <li>Cancel anytime</li>
-      </ul>
-      <a href="#" class="btn btn-green" onclick="openModal()">Get Premium</a>
-    </div>
+<div class="section" style="background: white;">
+  <h2>100% Free — Always</h2>
+  <p>Everything on Faith4Penpals is free. No hidden fees, no paywalls, no tricks.</p>
+  <div class="free-banner">
+    <h3>🎉 Free Forever</h3>
+    <ul>
+      <li>Create your profile</li>
+      <li>Browse pen pals worldwide</li>
+      <li>Unlimited messaging</li>
+      <li>Advanced matching</li>
+      <li>Prayer request sharing</li>
+      <li>Bible verse profiles</li>
+    </ul>
+    <a href="#" class="btn btn-green" onclick="openModal()">Join Free Today</a>
   </div>
 </div>
 
-<!-- SUPPORT -->
-<div class="section" id="support" style="background: white;">
+<div class="section" id="support" style="background: #faf9f7;">
   <h2>Support Our Mission ☕</h2>
-  <p>This is a free Christian pen pal community. If you'd like to help keep it running, you can buy us a coffee — no pressure at all.</p>
-  <a href="https://www.buymeacoffee.com/YOURNAME" target="_blank" class="btn btn-gold">Buy Us a Coffee ☕</a>
+  <p>Faith4Penpals is free because we believe faith-based friendship shouldn't cost a thing. If you'd like to help keep the lights on, a coffee goes a long way — but absolutely no pressure.</p>
+  <a href="https://www.redbubble.com/YOURSTORE" target="_blank" class="btn btn-green">🛍️ Shop Our Merch</a>
+  <a href="https://www.buymeacoffee.com/YOURNAME" target="_blank" class="btn btn-gold">☕ Buy Us a Coffee</a>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 Faith4Penpals | Made with ❤️ and faith in Australia</p>
   <p>
@@ -276,7 +161,6 @@
   </p>
 </footer>
 
-<!-- SIGNUP MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
@@ -295,23 +179,14 @@
       <option>Other</option>
     </select>
     <a href="#" class="btn btn-green" style="width:100%; text-align:center;" onclick="closeModal()">Create Free Account</a>
-    <div class="coming-soon">
-      🚧 Full signup system coming soon! We're building something special.
-    </div>
+    <div class="coming-soon">🚧 Full signup system coming soon! We're building something special.</div>
   </div>
 </div>
 
 <script>
-  function openModal() {
-    document.getElementById('modalOverlay').classList.add('active');
-  }
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-  }
-  function closeModalOutside(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-  }
+  function openModal() { document.getElementById('modalOverlay').classList.add('active'); }
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
 </script>
-
 </body>
 </html>
