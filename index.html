@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -53,16 +53,7 @@
     .free-banner ul { list-style: none; text-align: left; margin-bottom: 24px; }
     .free-banner ul li { padding: 8px 0; color: #444; font-size: 1.05em; }
     .free-banner ul li::before { content: "✓ "; color: var(--green); font-weight: bold; }
-    .founder-box {
-      background: white;
-      border-left: 5px solid var(--gold);
-      border-radius: 12px;
-      padding: 40px;
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: left;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    }
+    .founder-box { background: white; border-left: 5px solid var(--gold); border-radius: 12px; padding: 40px; max-width: 700px; margin: 0 auto; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
     .founder-box h2 { font-family: 'Lora', serif; color: var(--gold); margin-bottom: 20px; font-size: 1.6em; }
     .founder-box p { color: #555; margin-bottom: 16px; font-size: 1.05em; line-height: 1.8; }
     .founder-box .founder-sig { font-family: 'Lora', serif; font-style: italic; color: var(--green-dark); font-size: 1.1em; margin-top: 20px; }
@@ -76,6 +67,8 @@
     .modal input:focus, .modal select:focus { outline: none; border-color: var(--green); }
     .modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--muted); }
     .coming-soon { background: var(--green-light); border-radius: 8px; padding: 14px; margin-top: 16px; font-size: 0.9em; color: var(--green-dark); }
+    .disclaimer { margin-top: 16px; font-size: 0.85em; color: #888; line-height: 1.6; border-top: 1px solid #eee; padding-top: 14px; }
+    .disclaimer a { color: var(--green); font-weight: 600; text-decoration: underline; }
     footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; }
     footer a { color: #a5d6a7; text-decoration: none; margin: 0 10px; }
     footer a:hover { text-decoration: underline; }
@@ -161,6 +154,7 @@
   </p>
 </footer>
 
+<!-- SIGNUP MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
@@ -179,7 +173,15 @@
       <option>Other</option>
     </select>
     <a href="#" class="btn btn-green" style="width:100%; text-align:center;" onclick="closeModal()">Create Free Account</a>
-    <div class="coming-soon">🚧 Full signup system coming soon! We're building something special.</div>
+    <div class="coming-soon">
+      🚧 Full signup system coming soon! We're building something special.
+    </div>
+    <div class="disclaimer">
+      By using our free service you agree to and are bound by our
+      <a href="https://harccianbc.github.io/faith4penpals/terms.html" target="_blank">Terms of Service</a>
+      and
+      <a href="https://harccianbc.github.io/faith4penpals/privacy.html" target="_blank">Privacy Policy</a>.
+    </div>
   </div>
 </div>
 
