@@ -1,1 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Faith4Penpals – Sign Up Free</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2e7d32;
+      --green-dark: #1b5e20;
+      --green-light: #e8f5e9;
+      --gold: #b8860b;
+      --text: #2c2c2c;
+      --muted: #666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Source Sans 3', sans-serif; background: #faf9f7; color: var(--text); }
+    nav {
+      background: var(--green-dark);
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-family: 'Lora', serif; color: white; font-size: 1.3em; text-decoration: none; }
+    .nav-links { display: flex; gap: 10px; align-items: center; }
+    .nav-links a { color: #c8e6c9; text-decoration: none; font-size: 0.95em; padding: 6px 12px; border-radius: 6px; transition: background 0.2s; }
+    .nav-links a:hover { background: rgba(255,255,255,0.1); }
+    .nav-signup { background: white !important; color: var(--green-dark) !important; font-weight: 600 !important; }
+    .age-banner { background: #b71c1c; color: white; text-align: center; padding: 10px 20px; font-size: 0.95em; font-weight: 600; }
 
+    .signup-hero {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .signup-hero h1 { font-family: 'Lora', serif; font-size: 2.5em; margin-bottom: 10px; }
+    .signup-hero p { font-size: 1.1em; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+    .signup-container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    .step {
+      background: white;
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .step h2 {
+      font-family: 'Lora', serif;
+      color: var(--green-dark);
+      font-size: 1.4em;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--green-light);
+    }
+    .step h2 span {
+      background: var(--green);
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85em;
+      margin-right: 10px;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.9em; font-weight: 600; color: #555; margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+      background: white;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--green); }
+    .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .form-row .form-group { flex: 1; min-width: 140px; }
+
+    /* AVATAR PICKER */
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .avatar-option {
+      border: 3px solid #eee;
+      border-radius: 12px;
+      padding: 16px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fafafa;
+    }
+    .avatar-option:hover { border-color: var(--green); background: var(--green-light); }
+    .avatar-option.selected { border-color: var(--green); background: var(--green-light); }
+    .avatar-option .emoji { font-size: 2.5em; display: block; margin-bottom: 6px; }
+    .avatar-option .label { font-size: 0.78em; color: #666; }
+
+    /* INTERESTS */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .interest-option {
+      border: 2px solid #eee;
+      border-radius: 8px;
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.88em;
+      background: #fafafa;
+    }
+    .interest-option:hover { border-color: var(--green); background: var(--green-light); }
+    .interest-option.selected { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 600; }
+    .interest-count { font-size: 0.9em; color: var(--muted); margin-bottom: 10px; }
+
+    /* LOOKING FOR */
+    .checkbox-grid { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .checkbox-pill {
+      border: 2px solid #eee;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: all 0.2s;
+      background: #fafafa;
+    }
+    .checkbox-pill:hover { border-color: var(--green); }
+    .checkbox-pill.selected { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 600; }
+    .checkbox-pill input { display: none; }
+
+    /* DENOMINATION */
+    .denom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .denom-option {
+      border: 2px solid #eee;
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 0.88em;
+      transition: all 0.2s;
+      background: #fafafa;
+      text-align: center;
+    }
+    .denom-option:hover { border-color: var(--green); background: var(--green-light); }
+    .denom-option.selected { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 600; }
+
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+    .checkbox-row input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: var(--green); transform: scale(1.3); }
+    .checkbox-row label { font-size: 0.92em; color: #555; line-height: 1.5; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: background 0.2s;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .submit-btn.enabled { opacity: 1; pointer-events: auto; }
+    .submit-btn.enabled:hover { background: var(--green-dark); }
+
+    .coming-soon {
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 16px;
+      font-size: 0.9em;
+      color: var(--green-dark);
+      text-align: center;
+    }
+    .disclaimer { margin-top: 16px; font-size: 0.85em; color: #888; line-height: 1.6; text-align: center; }
+    .disclaimer a { color: var(--green); font-weight: 600; text-decoration: underline; }
+
+    footer { background: var(--green-dark); color: #c8e6c9; text-align: center; padding: 30px 20px; font-size: 0.9em; }
+    footer a { color: #a5d6a7; text-decoration: none; margin: 0 10px; }
+    footer p { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<div class="age-banner">
+  ⚠️ Faith4Penpals is strictly for users aged 18 and over. By using this site you confirm you are 18+.
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">✝️ Faith4Penpals</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="members.html">Members</a>
+    <a href="index.html#support">Support Us</a>
+    <a href="signup.html" class="nav-signup">Sign Up Free</a>
+  </div>
+</nav>
+
+<div class="signup-hero">
+  <h1>✝️ Welcome to Faith4Penpals!</h1>
+  <p>We are so glad you are here! 🙏 Join our free Christian pen pal community and start connecting with believers around the world. It only takes a few minutes!</p>
+</div>
+
+<div class="signup-container">
+
+  <!-- STEP 1 — BASIC INFO -->
+  <div class="step">
+    <h2><span>1</span> Tell Us About Yourself</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name Only *</label>
+        <input type="text" id="firstName" placeholder="Your first name" />
+      </div>
+      <div class="form-group">
+        <label>Age *</label>
+        <input type="number" id="age" placeholder="Your age" min="18" max="99" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Gender *</label>
+        <select id="gender">
+          <option value="">Select...</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Country *</label>
+        <select id="country">
+          <option value="">Select your country...</option>
+          <option>Australia</option>
+          <option>New Zealand</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Ireland</option>
+          <option>South Africa</option>
+          <option>Nigeria</option>
+          <option>Kenya</option>
+          <option>Ghana</option>
+          <option>Uganda</option>
+          <option>Zimbabwe</option>
+          <option>Tanzania</option>
+          <option>Ethiopia</option>
+          <option>Philippines</option>
+          <option>India</option>
+          <option>South Korea</option>
+          <option>Indonesia</option>
+          <option>Brazil</option>
+          <option>Mexico</option>
+          <option>Colombia</option>
+          <option>Argentina</option>
+          <option>Chile</option>
+          <option>Peru</option>
+          <option>Germany</option>
+          <option>France</option>
+          <option>Italy</option>
+          <option>Spain</option>
+          <option>Portugal</option>
+          <option>Poland</option>
+          <option>Romania</option>
+          <option>Netherlands</option>
+          <option>Belgium</option>
+          <option>Sweden</option>
+          <option>Norway</option>
+          <option>Denmark</option>
+          <option>Finland</option>
+          <option>Switzerland</option>
+          <option>Austria</option>
+          <option>Hungary</option>
+          <option>Papua New Guinea</option>
+          <option>Fiji</option>
+          <option>Samoa</option>
+          <option>Tonga</option>
+          <option>Solomon Islands</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="email" placeholder="Your email address" />
+      </div>
+      <div class="form-group">
+        <label>Password *</label>
+        <input type="password" id="password" placeholder="Choose a password" />
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 — DENOMINATION -->
+  <div class="step">
+    <h2><span>2</span> Your Faith Background</h2>
+    <p style="color:#666; font-size:0.95em; margin-bottom:16px;">Select the one that best describes you — everyone is welcome here! 🙏</p>
+    <div class="denom-grid" id="denomGrid">
+      <div class="denom-option" onclick="selectDenom(this)">Anglican</div>
+      <div class="denom-option" onclick="selectDenom(this)">Baptist</div>
+      <div class="denom-option" onclick="selectDenom(this)">Catholic</div>
+      <div class="denom-option" onclick="selectDenom(this)">Charismatic</div>
+      <div class="denom-option" onclick="selectDenom(this)">Church of Christ</div>
+      <div class="denom-option" onclick="selectDenom(this)">Eastern Orthodox</div>
+      <div class="denom-option" onclick="selectDenom(this)">Evangelical</div>
+      <div class="denom-option" onclick="selectDenom(this)">Lutheran</div>
+      <div class="denom-option" onclick="selectDenom(this)">Methodist</div>
+      <div class="denom-option" onclick="selectDenom(this)">Mennonite</div>
+      <div class="denom-option" onclick="selectDenom(this)">Non-Denominational</div>
+      <div class="denom-option" onclick="selectDenom(this)">Pentecostal</div>
+      <div class="denom-option" onclick="selectDenom(this)">Presbyterian</div>
+      <div class="denom-option" onclick="selectDenom(this)">Quaker</div>
+      <div class="denom-option" onclick="selectDenom(this)">Reformed</div>
+      <div class="denom-option" onclick="selectDenom(this)">Salvation Army</div>
+      <div class="denom-option" onclick="selectDenom(this)">Seventh Day Adventist</div>
+      <div class="denom-option" onclick="selectDenom(this)">Assemblies of God</div>
+      <div class="denom-option" onclick="selectDenom(this)">Brethren</div>
+      <div class="denom-option" onclick="selectDenom(this)">Other Christian</div>
+      <div class="denom-option" onclick="selectDenom(this)">Non-Christian / Faith Curious</div>
+    </div>
+  </div>
+
+  <!-- STEP 3 — LOOKING FOR -->
+  <div class="step">
+    <h2><span>3</span> Who Are You Looking For?</h2>
+
+    <div class="form-group">
+      <label>I am looking for pen pals who are:</label>
+      <div class="checkbox-grid">
+        <div class="checkbox-pill" onclick="togglePill(this)">Male</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">Female</div>
+        <div class="checkbox-pill selected" onclick="togglePill(this)">Both</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Age range I am open to:</label>
+      <div style="display:flex; gap:12px; align-items:center; margin-top:8px;">
+        <input type="number" id="lookingAgeMin" placeholder="18" min="18" max="99" style="width:80px; padding:10px; border:1px solid #ddd; border-radius:8px;" />
+        <span style="color:#888;">to</span>
+        <input type="number" id="lookingAgeMax" placeholder="99" min="18" max="99" style="width:80px; padding:10px; border:1px solid #ddd; border-radius:8px;" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Countries I am open to hearing from:</label>
+      <div class="checkbox-grid" style="margin-top:8px;">
+        <div class="checkbox-pill selected" onclick="togglePill(this)" id="allCountries">🌍 All Countries</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇦🇺 Australia</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇺🇸 United States</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇬🇧 United Kingdom</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇨🇦 Canada</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇳🇿 New Zealand</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇿🇦 South Africa</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇳🇬 Nigeria</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇰🇪 Kenya</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇬🇭 Ghana</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇵🇭 Philippines</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇮🇳 India</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇧🇷 Brazil</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇩🇪 Germany</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇫🇷 France</div>
+        <div class="checkbox-pill" onclick="togglePill(this)">🇮🇪 Ireland</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 — AVATAR -->
+  <div class="step">
+    <h2><span>4</span> Choose Your Avatar</h2>
+    <p style="color:#666; font-size:0.95em; margin-bottom:16px;">Pick one that represents you! You can update to a photo after 1 month. 🙏</p>
+    <div class="avatar-grid" id="avatarGrid">
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🕊️</span><span class="label">Dove</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">✝️</span><span class="label">Cross</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">📖</span><span class="label">Bible</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🌟</span><span class="label">Star</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🙏</span><span class="label">Prayer</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🌸</span><span class="label">Flower</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🌈</span><span class="label">Rainbow</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">⚓</span><span class="label">Anchor</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🕯️</span><span class="label">Candle</span>
+      </div>
+      <div class="avatar-option" onclick="selectAvatar(this)">
+        <span class="emoji">🦋</span><span class="label">Butterfly</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 — INTERESTS -->
+  <div class="step">
+    <h2><span>5</span> Your Interests</h2>
+    <p class="interest-count" id="interestCount">Pick up to 20 interests that describe you 🎯</p>
+    <div class="interests-grid">
+      <div class="interest-option" onclick="toggleInterest(this)">🎵 Music</div>
+      <div class="interest-option" onclick="toggleInterest(this)">💃 Dancing</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎬 Streaming</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🌿 Nature</div>
+      <div class="interest-option" onclick="toggleInterest(this)">📚 Book Club</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🐴 Horse Riding</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🐾 Animals</div>
+      <div class="interest-option" onclick="toggleInterest(this)">📖 Bible Study</div>
+      <div class="interest-option" onclick="toggleInterest(this)">💻 Computers</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎮 Gaming</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎭 Cosplay</div>
+      <div class="interest-option" onclick="toggleInterest(this)">✍️ Writing</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎨 Art</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🍳 Cooking</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🏃 Fitness</div>
+      <div class="interest-option" onclick="toggleInterest(this)">✈️ Travel</div>
+      <div class="interest-option" onclick="toggleInterest(this)">📸 Photography</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎸 Playing Music</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🧶 Crafts</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🌱 Gardening</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🏖️ Beach</div>
+      <div class="interest-option" onclick="toggleInterest(this)">⚽ Sport</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🧘 Prayer/Meditation</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎤 Singing</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🤝 Volunteering</div>
+      <div class="interest-option" onclick="toggleInterest(this)">👨‍👩‍👧 Family</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🎪 Theatre</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🔭 Science</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🗺️ History</div>
+      <div class="interest-option" onclick="toggleInterest(this)">🧩 Puzzles</div>
+    </div>
+  </div>
+
+  <!-- STEP 6 — AGREE -->
+  <div class="step">
+    <h2><span>6</span> Almost Done!</h2>
+    <div class="checkbox-row">
+      <input type="checkbox" id="ageCheck" onchange="checkSubmit()" />
+      <label for="ageCheck">⚠️ I confirm that I am <strong>18 years of age or older</strong>. I understand this site is strictly for adults aged 18+.</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="termsCheck" onchange="checkSubmit()" />
+      <label for="termsCheck">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>.</label>
+    </div>
+    <button class="submit-btn" id="submitBtn" onclick="submitSignup()">✝️ Create My Free Account</button>
+    <div class="coming-soon">
+      🚧 Full signup system coming soon! We are building something special for you. 🙏
+    </div>
+    <div class="disclaimer">
+      By creating an account you agree to our
+      <a href="terms.html">Terms of Service</a> and
+      <a href="privacy.html">Privacy Policy</a>.
+      Faith4Penpals is a free service — no credit card required.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Faith4Penpals | Made with ❤️ and faith in Australia</p>
+  <p>
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </p>
+</footer>
+
+<script>
+  let selectedAvatar = null;
+  let selectedDenom = null;
+  let selectedInterests = [];
+
+  function selectAvatar(el) {
+    document.querySelectorAll('.avatar-option').forEach(a => a.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedAvatar = el.querySelector('.label').textContent;
+  }
+
+  function selectDenom(el) {
+    document.querySelectorAll('.denom-option').forEach(d => d.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedDenom = el.textContent;
+  }
+
+  function togglePill(el) {
+    el.classList.toggle('selected');
+  }
+
+  function toggleInterest(el) {
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      selectedInterests = selectedInterests.filter(i => i !== el.textContent);
+    } else {
+      if (selectedInterests.length >= 20) {
+        alert('You can only select up to 20 interests!');
+        return;
+      }
+      el.classList.add('selected');
+      selectedInterests.push(el.textContent);
+    }
+    const count = selectedInterests.length;
+    document.getElementById('interestCount').textContent =
+      count === 0 ? 'Pick up to 20 interests that describe you 🎯' :
+      count + '/20 selected' + (count === 20 ? ' — maximum reached!' : '');
+  }
+
+  function checkSubmit() {
+    const ageChecked = document.getElementById('ageCheck').checked;
+    const termsChecked = document.getElementById('termsCheck').checked;
+    const btn = document.getElementById('submitBtn');
+    if (ageChecked && termsChecked) {
+      btn.classList.add('enabled');
+    } else {
+      btn.classList.remove('enabled');
+    }
+  }
+
+  function submitSignup() {
+    alert('🙏 Thank you for joining Faith4Penpals! Full account creation is coming very soon. God bless you!');
+  }
+</script>
+</body>
+</html>
